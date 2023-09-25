@@ -1,0 +1,158 @@
+dependencies install in frontend
+    in root folder                          npx create-react-app frontend    
+    chakra ui                               npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+    routing                                 npm i react-router-dom  
+    api fetching                            npm i axios
+    icons                                   npm i @chakra-ui/icons
+    for scrollable (to last) chat           npm i react-scrollable-feed
+    socket.io                               npm i socket.io-client
+    lottieFiles animations                  npm i lottie-react
+    notifications                           npm i react-notification-badge
+    build react project                     npm run build
+
+
+dependencies install in root directory (for backend)
+    initialize                              npm init
+    install express                         npm i express
+    .env                                    npm i dotenv
+    nodemon                                 npm i nodemon
+    mongoose                                npm i mongoose
+    for colorful terminal                   npm i colors        console.log(`Server Started on PORT ${PORT}`.yellow.bold)
+    to handle errors in controller          npm i express-async-handler
+    for jwt                                 npm i jsonwebtoken
+    for securing password                   npm i bcryptjs
+    socket.io                               npm install socket.io
+
+CSS THINGS
+    chakra ui
+    work-sans google font       import in app.css
+
+
+
+NOTES
+"proxy": "h11p://127.0.0.1:5000",       inside frontend/package.json
+    to solve cors error (came in linking frontend and backend)
+
+mongoose
+    to connect with mongodb DB and to write queries to DB
+    to create schema
+
+backend/config/db.js
+    responsible to connect with database
+
+mongoose queries
+    User.create({obj})
+    User.findOne({obj})
+
+jwt tokken
+    create tokken
+        jwt.sign({ id }, process.env.JWT_SECRET, {
+            expiresIn: "30d",
+        });
+    we are encoding user id and make token of it
+    in decoding token, we get ab object containing that user id
+
+app.use(express.json())         inside server.js
+    to tell server to accept the JSON data from frontend
+
+to encrypt the password before saving it to DB
+    userSchema.pre('save', async function (next) {
+    if (!this.isModified) {
+        next()
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password,salt)
+    })
+
+cloudinary
+    https://cloudinary.com/documentation/image_upload_api_reference#upload_examples
+    https://console.cloudinary.com/settings/c-0546ac2266efa2e3a233fb335f86c5/settings/upload
+
+params
+    baseUrl/:param
+
+query
+    baseUrl?query
+
+regex in allUsers in userControllers
+    for string finding in model attributes
+
+res.send() and res.json() works similarly
+
+res.status(400);throw new Error(err.message); and res.status(400).send("msg"); also works similarly
+
+const groupChat = await Chat.findByIdAndUpdate(
+    chatId,
+    { chatName },
+    { new: true }   // without giving this, it will return old name of the group
+);
+
+context api
+    for globally access the states in any component
+
+if at some point of time, by default go to chats route
+    we have to change it, check ChatProvider.js in context folder
+
+fontFamily="Work sans"
+    used in chakra ui
+
+best practice for loading
+    loadingtrue
+    try(loadingfalse)
+    catch(loadingfalse)
+
+
+socket.io
+    is one of the web sockets
+
+    const server = app.listen(PORT, console.log(`Server Started on PORT ${PORT}`.yellow.bold));
+    const io = require("socket.io")(server, {
+        // amount of time it will wait while being inactive
+        // if user didnt send any,sg within pingTimeout, it will close the connection to save the bandwidth
+        pingTimeout: 60000,
+
+        // to remove cross origin errors while building our app
+        cors: {
+            origin: "http://localhost:3000",
+        },
+    });
+
+    socket.emit()                       sender      sends event to where this event is called
+
+    io.on('connection',(socket)=>{})    when any event calls / sends to server, this will run
+
+    socket.on('eventName',()=>{})        reciever    this will run if eventName socket is called
+
+
+ERRORS
+axios error in console
+    comes when you are using api calls but didnot start backend server from where api calls are going
+
+
+
+
+CHANGES TO DO
+    use form tag and wrap formControl inside form tag
+    wrap all form states in a single object state
+    add confirmPassword validation also in controllers/userControllers.js
+    try catch blocks in controllers in error cases
+    can add abusive words and if any message has abusive words like fuck or f*ck, we will not send that message in the chat
+    postDetails function in signup.jsx in components in frontend
+    check all the status in res in every controller
+    transform all async await funcitons to try catch blocks
+    controllers for delete user / delete (chat / group)
+    fix this - we can add same user multiple times in same groupchat
+    make http://localhost:3000/chats this route protected
+    change name from sideDrawer to chatsNavbar
+    useEffect 2nd dependency in chatProvider
+    if i delete the user, it must also be deleted from all others chats / groups
+    to reply a particular message in the chat
+    convert text to emojies     <3 to heat emoji
+    when some join / exit from the group, it should displayed on the ui and DB too
+
+
+TO UNDERSTAND
+    app.use(notFound);          inside server.js
+    app.use(errorHandler);      inside server.js
+    authMiddlewares
