@@ -150,7 +150,8 @@ CHANGES TO DO
     to reply a particular message in the chat
     convert text to emojies     <3 to heat emoji
     when some join / exit from the group, it should displayed on the ui and DB too
-
+    video call functionality 
+    groups can be publically visible or not
 
 TO UNDERSTAND
     app.use(notFound);          inside server.js
