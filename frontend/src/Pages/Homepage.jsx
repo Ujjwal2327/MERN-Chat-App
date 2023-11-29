@@ -44,7 +44,7 @@ const HomePage = () => {
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Text>Talk-A-Tive</Text>
+        <Text>Chitter-Chat</Text>
       </Box>
       <Box
         maxW="xl"

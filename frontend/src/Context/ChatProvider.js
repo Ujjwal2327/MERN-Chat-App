@@ -13,7 +13,7 @@ const ChatProvider = ({ children }) => {
   useEffect(() => {
     // this will apply in every route
     const savedUserInfo = JSON.parse(localStorage.getItem("userInfo"));
-    console.log(savedUserInfo);
+    // console.log(savedUserInfo);
     if (!savedUserInfo) {
       navigate("/");
     } else {

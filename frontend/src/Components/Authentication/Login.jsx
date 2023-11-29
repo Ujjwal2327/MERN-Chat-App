@@ -48,8 +48,8 @@ const Login = () => {
         config
       );
 
-      console.log(data);
-      console.log(JSON.stringify(data));
+      // console.log(data);
+      // console.log(JSON.stringify(data));
       toast({
         title: "Login Successful!",
         status: "success",

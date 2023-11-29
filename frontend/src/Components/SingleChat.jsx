@@ -157,7 +157,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         position: "bottom",
       });
     }
-    console.log("e", (event.target.onblur = true));
+    console.log("message error", (event.target.onblur = true));
   };
 
   const typingHandler = async (event) => {
